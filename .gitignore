@@ -1,6 +1,10 @@
 .DS_Store
 node_modules
 /dist
+.history
+.svn
+temp
+*.sql
 
 
 # local env files

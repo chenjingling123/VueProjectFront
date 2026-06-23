@@ -1,3 +1,4 @@
+<!--用户管理 he -->
 <template>
   <div class="system-user-container app-container">
     <el-card shadow="always">
@@ -129,6 +130,11 @@
           <el-table-column
             label="用户名"
             prop="username"
+            show-overflow-tooltip
+          ></el-table-column>
+          <el-table-column
+            label="昵称"
+            prop="nickName"
             show-overflow-tooltip
           ></el-table-column>
           <el-table-column label="头像" show-overflow-tooltip>

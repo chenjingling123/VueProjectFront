@@ -1,6 +1,7 @@
 // const baseURL = "http://localhost:8088"
 const baseURL = import.meta.env.VITE_API_URL
 
+
 // 转换字符串，undefined,null等转化为""
 export function praseStrEmpty(str: any) {
     if (!str || str == "undefined" || str == "null") {

@@ -103,9 +103,9 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			// 是否开启深色模式
 			isIsDark: false,
 			// 是否开启水印
-			isWartermark: true,
+			isWartermark: false,
 			// 水印文案
-			wartermarkText: 'PandaX',
+			wartermarkText: 'Hello World!',
 
 			/**
 			 * 其它设置
@@ -138,9 +138,9 @@ const themeConfigModule: Module<ThemeConfigState, RootStateTypes> = {
 			 * 全局网站标题 / 副标题
 			 */
 			// 网站主标题（菜单导航、浏览器当前网页标题）
-			globalTitle: 'Panda-Go-Admin',
+			globalTitle: '我的系统',
 			// 网站副标题（登录页顶部文字）
-			globalViceTitle: 'Panda-Go-Admin',
+			globalViceTitle: '我的系统',
 			// 默认初始语言，可选值"<zh-cn|en|zh-tw>"，默认 zh-cn
 			globalI18n: 'zh-cn',
 			// 默认全局组件大小，可选值"<|medium|small|mini>"，默认 ''

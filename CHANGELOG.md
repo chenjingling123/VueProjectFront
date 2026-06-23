@@ -1,6 +1,6 @@
-# <a href="https://gitee.com/PandaAdmin/PandaX" target="_blank">PandaUi 更新日志</a>
+# <a href="https://gitee.com/PandaAdmin/PandaX" target="_blank">更新日志</a>
 
-🎉🎉🔥 `PandaUi` 基于 vue3.x 、Typescript、vite、Element plus 等，适配手机、平板、pc 的后台开源免费模板库（vue2.x 请切换 vue-prev-admin 分支）
+🎉🎉🔥 `xxx` 基于 vue3.x 、Typescript、vite、Element plus 等，适配手机、平板、pc 的后台开源免费模板库（vue2.x 请切换 vue-prev-admin 分支）
 
 ## 1.1.1
 

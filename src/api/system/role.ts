@@ -13,28 +13,48 @@ export function listRole(query: Array<object>) {
 // 查询角色详细
 export function getRole(roleId: number) {
 	return request({
+		url: '/system/role/getById?roleId=' + roleId,
+		method: 'get'
+	})
+} 
+/* export function getRole(roleId: number) {
+	return request({
 		url: '/system/role/' + roleId,
 		method: 'get'
 	})
-}
+} */
 
-// 新增角色
+// 新增角色 //helm 使用add
 export function addRole(data: Array<object>) {
+	return request({
+		url: '/system/role/add',
+		method: 'post',
+		data: data
+	})
+}
+/* export function addRole(data: Array<object>) {
 	return request({
 		url: '/system/role',
 		method: 'post',
 		data: data
 	})
-}
+} */
 
 // 修改角色
 export function updateRole(data: Array<object>) {
+	return request({
+		url: '/system/role/update',
+		method: 'put',
+		data: data
+	})
+}
+/* export function updateRole(data: Array<object>) {
 	return request({
 		url: '/system/role',
 		method: 'put',
 		data: data
 	})
-}
+} */
 
 // 角色数据权限
 export function dataScope(data: Array<object>) {

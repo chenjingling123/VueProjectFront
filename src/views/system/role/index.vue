@@ -63,6 +63,7 @@
             <!--操作按钮-->
             <el-row :gutter="10" custom-class="mb8">
                 <el-col :span="1.5">
+                    <!-- add helm -->
                     <el-button
                             type="primary"
                             plain
@@ -74,6 +75,7 @@
                     </el-button>
                 </el-col>
                 <el-col :span="1.5">
+                     <!-- delete helm -->
                     <el-button
                             type="danger"
                             plain
@@ -86,6 +88,7 @@
                     </el-button>
                 </el-col>
                 <el-col :span="1.5">
+                     <!-- export helm -->
                     <el-button
                             type="warning"
                             plain
@@ -145,6 +148,7 @@
                         class-name="small-padding fixed-width"
                 >
                     <template #default="scope">
+                         <!-- edit helm-->
                         <el-button
                                 size="mini"
                                 type="text"
@@ -160,6 +164,7 @@
                                 @click="handleDataScope(scope.row)"
                         >数据权限
                         </el-button>
+                        <!-- delete helm-->
                         <el-button
                                 size="mini"
                                 type="text"
@@ -186,7 +191,7 @@
             </div>
         </el-card>
         <!-- 添加或修改角色配置对话框 -->
-        <el-dialog :title="title" v-model="open" width="700px">
+        <el-dialog :title="title" v-model="open" width="769px">
             <el-form
                     ref="roleFormRef"
                     :model="roleForm"
@@ -292,7 +297,7 @@
         </el-dialog>
 
         <!-- 分配角色数据权限对话框 -->
-        <el-dialog :title="title" v-model="openDataScope" width="700px">
+        <el-dialog :title="title" v-model="openDataScope" width="769px">
             <el-form :model="roleForm" label-width="80px">
                 <el-form-item label="角色名称">
                     <el-input v-model="roleForm.roleName" :disabled="true"/>

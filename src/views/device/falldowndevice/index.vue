@@ -1,4 +1,4 @@
-<!--岗位管理 he -->
+<!--报警器设备管理 he -->
 <template>
   <div class="app-container">
     <el-card shadow="always">
@@ -9,30 +9,30 @@
       :inline="true"
       label-width="68px"
     >
-      <el-form-item label="岗位编码" prop="postCode">
+      <el-form-item label="设备编码" prop="DeviceCode">
         <el-input
-          placeholder="请输入岗位编码模糊查询"
+          placeholder="请输入设备编码模糊查询"
           clearable
           size="small"
           @keyup.enter="handleQuery"
           style="width: 240px"
-          v-model="queryParams.postCode"
+          v-model="queryParams.DeviceCode"
         />
       </el-form-item>
-      <el-form-item label="岗位名称" prop="postName">
+      <el-form-item label="设备型号" prop="Model">
         <el-input
-          placeholder="请输入岗位名称模糊查询"
+          placeholder="请输入设备型号模糊查询"
           clearable
           size="small"
           @keyup.enter="handleQuery"
           style="width: 240px"
-          v-model="queryParams.postName"
+          v-model="queryParams.Model"
         />
       </el-form-item>
-      <el-form-item label="状态" prop="status">
+      <el-form-item label="状态" prop="Status">
         <el-select
-          v-model="queryParams.status"
-          placeholder="岗位状态"
+          v-model="queryParams.Status"
+          placeholder="状态"
           clearable
           size="small"
           style="width: 240px"
@@ -67,7 +67,7 @@
           plain
           icon="el-icon-plus"
           size="mini"
-          v-auth="'system:post:add'"
+          v-auth="'device:falldowndevice:add'"
           @click="onOpenAddModule"
           >新增</el-button
         >
@@ -78,7 +78,7 @@
           plain
           icon="el-icon-delete"
           size="mini"
-          v-auth="'system:post:delete'"
+          v-auth="'device:falldowndevice:delete'"
           :disabled="multiple"
           @click="onTabelRowDel"
           >删除</el-button
@@ -90,7 +90,7 @@
           plain
           icon="el-icon-download"
           size="mini"
-          v-auth="'system:post:export'"
+          v-auth="'device:falldowndevice:export'"
           @click="onTabelRowDel"
           >导出</el-button
         >
@@ -104,18 +104,18 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="岗位编号" align="center" prop="postId" />
-      <el-table-column label="岗位编码" align="center" prop="postCode" />
-      <el-table-column label="岗位名称" align="center" prop="postName" />
-      <el-table-column label="岗位排序" align="center" prop="sort" />
+      <el-table-column label="设备编号" align="center" prop="DeviceCode" />
+      <el-table-column label="设备型号" align="center" prop="Model" />
+      <el-table-column label="家属电话" align="center" prop="ContactPhones" />
+      <el-table-column label="设备电话" align="center" prop="Phone" />
       <el-table-column
         label="状态"
         align="center"
-        prop="status"
+        prop="Status"
       >
         <template #default="scope">
           <el-tag
-                  :type="scope.row.status === '1' ? 'danger' : 'success'"
+                  :type="scope.row.Status === '1' ? 'danger' : 'success'"
                   disable-transitions
           >{{ statusFormat(scope.row)}}</el-tag>
         </template>
@@ -130,7 +130,7 @@
             size="mini"
             type="text"
             icon="el-icon-edit"
-            v-auth="'system:post:edit'"
+            v-auth="'device:falldowndevice:edit'"
             @click="onOpenEditModule(scope.row)"
             >修改</el-button
           >
@@ -139,7 +139,7 @@
             size="mini"
             type="text"
             icon="el-icon-delete"
-            v-auth="'system:post:delete'"
+            v-auth="'device:falldowndevice:delete'"
             @click="onTabelRowDel(scope.row)"
             >删除</el-button
           >
@@ -175,7 +175,7 @@ import {
   onUnmounted,
 } from "vue";
 import { ElMessageBox, ElMessage } from "element-plus";
-import { listPost, delPost } from "/@/api/system/post";
+import { listFalldownDevice, delFalldownDevice } from "/@/api/device/falldowndevice";
 import EditModule from "./component/editModule.vue";
 
 export default {
@@ -207,16 +207,16 @@ export default {
         pageNum: 1,
         // 每页大小
         pageSize: 10,
-        postCode: undefined,
-        postName: undefined,
-        status: undefined,
+        DeviceCode: undefined,
+        Model: undefined,
+        Status: undefined,
       },
     });
 
     /** 查询岗位列表 */
     const handleQuery = () => {
       state.loading = true;
-      listPost(state.queryParams).then((response) => {
+      listFalldownDevice(state.queryParams).then((response) => {
         state.tableData = response.data.data;
         state.total = response.data.total;
         state.loading = false;
@@ -224,9 +224,9 @@ export default {
     };
     /** 重置按钮操作 */
     const resetQuery = () => {
-      state.queryParams.postName = undefined;
-      state.queryParams.postCode = undefined;
-      state.queryParams.status = undefined;
+      state.queryParams.DeviceCode = undefined;
+      state.queryParams.Model = undefined;
+      state.queryParams.Status = undefined;
       handleQuery();
     };
 
@@ -240,32 +240,34 @@ export default {
     }
 
     const statusFormat = (row: any) => {
-      return proxy.selectDictLabel(state.statusOptions, row.status);
+      return proxy.selectDictLabel(state.statusOptions, row.Status);
     };
 
-    // 打开新增岗位弹窗
+    // 打开新增报警器弹窗
     const onOpenAddModule = (row: object) => {
       row = [];
-      state.title = "添加岗位";
+      state.title = "添加报警器";
       editModuleRef.value.openDialog(row);
     };
-    // 打开编辑岗位弹窗
+    // 打开编辑报警器弹窗
     const onOpenEditModule = (row: object) => {
-      state.title = "修改岗位";
+      state.title = "修改报警器";
       editModuleRef.value.openDialog(row);
     };
     /** 删除按钮操作 */
     const onTabelRowDel = (row: any) => {
-      const postIds = row.postId || state.ids;
+      var Ids = row.Id || state.ids;
+      if(state.ids.length == 0)//如果是单个，那么需要变成数组，这样后台才能收到单个（数组里）
+        Ids = [row.Id];
       ElMessageBox({
-        message: '是否确认删除岗位编号为"' + postIds + '"的数据项?',
+        message: '是否确认删除报警器编号为"' + Ids + '"的数据项?',
         title: "警告",
         showCancelButton: true,
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
       }).then(function () {
-        return delPost(postIds).then(() => {
+        return delFalldownDevice(Ids).then(() => {
           handleQuery();
           ElMessage.success("删除成功");
         });
@@ -273,15 +275,15 @@ export default {
     };
     // 多选框选中数据
     const handleSelectionChange = (selection: any) => {
-      state.ids = selection.map((item: any) => item.postId);
+      state.ids = selection.map((item: any) => item.Id);
       state.single = selection.length != 1;
       state.multiple = !selection.length;
     };
     // 页面加载时
     onMounted(() => {
-      // 查询岗位信息
+      // 查询报警器信息
       handleQuery();
-      // 查询岗位状态数据字典
+      // 查询报警器状态数据字典
       proxy.getDicts("sys_normal_disable").then((response: any) => {
         state.statusOptions = response.data;
       });

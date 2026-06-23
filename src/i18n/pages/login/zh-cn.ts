@@ -9,8 +9,8 @@ export default {
 		two4: '友情链接',
 	},
 	copyright: {
-		one5: '版权所有：山东xxx软件科技有限公司',
-		two6: 'Copyright: ShanDong XXX Software Technology 鲁ICP备05010000号',
+		one5: '版权所有：My科技有限公司',
+		two6: 'Copyright: My Software Technology',
 	},
 	account: {
 		accountPlaceholder1: '用户名 admin 或不输均为 test',

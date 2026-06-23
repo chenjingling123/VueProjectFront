@@ -1,3 +1,4 @@
+<!--这里主要是布局信息、界面风格等 he-->
 <template>
 	<el-config-provider :locale="i18nLocale">
 		<router-view v-show="getThemeConfig.lockScreenTime !== 0" />

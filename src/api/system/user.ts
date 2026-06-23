@@ -24,13 +24,20 @@ export function changeUserStatus(userId: number, status: string) {
 }
 
 // 查询用户详细
+//modify by helm
 export function getUser(userId: number) {
+	return request({
+		url: '/system/user/getById?userId=' + userId,
+		method: 'get',		
+	})
+}
+/* export function getUser(userId: number) {
 	return request({
 		url: '/system/user/getById/' + userId,
 		method: 'get'
 	})
 }
-
+ */
 // 添加时查询用户详细
 export function getUserInit() {
 	return request({
@@ -47,17 +54,28 @@ export function getRoPo() {
 	})
 }
 // 删除用户
-export function delUser(userId: number) {
+//下面对应的后台路由不好弄，改成post
+ export function delUser(userId: number) {
 	return request({
-		url: '/system/user/' + userId,
-		method: 'delete'
+		//url: '/system/user/' + userId, //old
+		url: '/system/user/delete', 
+		method: 'post', //原来是delete 改成 post
+		data: userId
 	})
-}
+}  
 
+/*  export function delUser(userId: number) {
+	return request({
+		url: '/system/user/' + userId, //old		
+		method: 'delete', //原来是delete 改成 post		
+	})
+} 
+ */
 // 新增用户
 export function addUser(data: any) {
 	return request({
-		url: '/system/user',
+		url: '/system/user/add', //modif by helm 
+		//url: '/system/user/', //old 
 		method: 'post',
 		data: data
 	})
@@ -66,7 +84,8 @@ export function addUser(data: any) {
 // 修改用户
 export function updateUser(data:any) {
 	return request({
-		url: '/system/user',
+		//url: '/system/user',//old 
+		url: '/system/user/update', //modif by helm 
 		method: 'put',
 		data: data
 	})

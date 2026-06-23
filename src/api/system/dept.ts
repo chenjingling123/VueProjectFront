@@ -28,10 +28,16 @@ export function treeselect() {
 // 根据角色ID查询部门树结构
 export function roleDeptTreeselect(roleId: number) {
 	return request({
-		url: '/system/dept/roleDeptTreeSelect/' + roleId,
+		url: '/system/dept/roleDeptTreeSelect?roleId=' + roleId,
 		method: 'get'
 	})
 }
+/* export function roleDeptTreeselect(roleId: number) {
+	return request({
+		url: '/system/dept/roleDeptTreeSelect/' + roleId,
+		method: 'get'
+	})
+} */
 
 // 新增部门
 export function addDept(data:any) {

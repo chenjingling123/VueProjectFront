@@ -1,3 +1,4 @@
+<!--账号密码登录 he-->
 <template>
 	<el-form ref="loginFormRef" :model="state.loginForm" :rules="state.rules" class="login-content-form">
 		<el-form-item>
@@ -98,13 +99,13 @@ const store = useStore();
 const route = useRoute();
 const router = useRouter();
 const state = reactive({
-	dialogVerifyVisible: false,
-	isPassingFour: false,
+	dialogVerifyVisible: false, //控制旋转验证可见，初始是false，不可见
+	isPassingFour: false, //旋转验证是否通过
 	imgThree: 'https://img1.baidu.com/it/u=2813520958,2218166536&fm=26&fmt=auto&gp=0.jpg',
 	captchaImage: '',
 	loginForm: {
-		username: 'admin',
-		password: '123456',
+		username: '',//admin
+		password: '',//123456
 		captcha: '',
 		captchaId: '',
 	},
@@ -147,8 +148,11 @@ const login = () => {
 const onSignIn = async () => {
 	state.loading.signIn = true;
 	//let loginRespon: any;
-	let loginRespon:any = await signIn(state.loginForm)
-	if (loginRespon.code != 200){
+	let loginRespon;
+	try {
+		loginRespon = await signIn(state.loginForm)
+	} catch (e) {
+		console.log(loginRespon)
 		state.isPassingFour = false;
 		state.loading.signIn = false;
 		state.loginForm.captcha = '';
@@ -192,8 +196,14 @@ const onSignIn = async () => {
 	}
 };
 const openVerify = () => {
-	state.dialogVerifyVisible = true
+	state.dialogVerifyVisible = false //true 这里滑块验证很烦，先不要了 helm
+	passVerify();
 }
+
+//用下面的会显示旋转滑块验证 helm
+/* const openVerify = () => {
+	state.dialogVerifyVisible = true 	
+} */
 const passVerify = () => {
 	state.dialogVerifyVisible = false
 	console.log("通过滑块验证")

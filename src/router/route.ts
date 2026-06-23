@@ -66,6 +66,11 @@ export const staticRoutes: Array<RouteRecordRaw> = [
 	},
 ];
 
+/**
+ * 静态页面路由，就是“案例演示”即下面英文demo菜单下所有子菜单等，这里前端写死，后端不控制
+ * 如果不要这个，可以在加载静态路由staticPageRoutes的地方，注释掉（src\router\index.ts）
+ * @returns 返回路由菜单数据
+ */
 export const staticPageRoutes: Array<RouteRecordRaw> = [
 	{
 		path: '/demo',
@@ -83,7 +88,7 @@ export const staticPageRoutes: Array<RouteRecordRaw> = [
 		},
 		children: [
 			{
-				path: '/fun',
+				path: '/fun', //目录
 				name: 'funIndex',
 				component: () => import('/@/layout/routerView/parent.vue'),
 				redirect: '/fun/tagsView',
@@ -99,17 +104,32 @@ export const staticPageRoutes: Array<RouteRecordRaw> = [
 				},
 				children: [
 					{
+						// 菜单路径，用于跳转
 						path: '/fun/tagsView',
+						// 菜单 name，用于界面 keep-alive 路由缓存。
+  						// 此 name 需要与 component 组件中的 name 值相同（唯一）
 						name: 'funTagsView',
+						// 组件路径
 						component: () => import('/@/views/demo/fun/tagsView/index.vue'),
+						// 附加自定义数据
 						meta: {
+							 // 菜单标题（国际化写法）
 							title: 'message.router.funTagsView',
+							// 菜单外链链接
+    						// 开启外链条件，`1、isLink: true 2、链接地址不为空（meta.isLink） 3、isIframe: false`
 							isLink: '',
+							// 菜单是否隐藏（菜单不显示在界面，但可以进行跳转）
 							isHide: false,
+							// 菜单是否缓存
 							isKeepAlive: true,
+							// 菜单是否固定（固定在 tagsView 中，不可进行关闭），右键菜单无 `关闭` 项
 							isAffix: false,
+							// 是否内嵌
+    						// 开启条件，`1、isIframe: true 2、链接地址不为空（meta.isLink）`
 							isIframe: false,
+							//当前路由权限标识（多个请用逗号隔开），最后转成数组格式，用于与当前用户权限进行对比，控制路由显示、隐藏
 							auth: ['base'],
+							//icon：   菜单、tagsView 图标，阿里：加 `iconfont xxx`，fontawesome：加 `fa xxx`
 							icon: 'el-icon-thumb',
 						},
 					},
@@ -673,7 +693,7 @@ export const staticPageRoutes: Array<RouteRecordRaw> = [
 						component: () => import('/@/layout/routerView/link.vue'),
 						meta: {
 							title: 'message.router.visualizingLinkDemo1',
-							isLink: `http://localhost:8889/#/visualizingDemo1`,
+							isLink: `http://localhost:7789/#/visualizingDemo1`,
 							isHide: false,
 							isKeepAlive: false,
 							isAffix: false,
@@ -688,7 +708,7 @@ export const staticPageRoutes: Array<RouteRecordRaw> = [
 						component: () => import('/@/layout/routerView/link.vue'),
 						meta: {
 							title: 'message.router.visualizingLinkDemo2',
-							isLink: `http://localhost:8889/#/visualizingDemo2`,
+							isLink: `http://localhost:7789/#/visualizingDemo2`,
 							isHide: false,
 							isKeepAlive: false,
 							isAffix: false,
@@ -751,7 +771,8 @@ export const staticPageRoutes: Array<RouteRecordRaw> = [
 				component: () => import('/@/layout/routerView/iframes.vue'),
 				meta: {
 					title: 'message.router.layoutIfameView',
-					isLink: 'https://gitee.com/PandaAdmin/PandaX',
+					//isLink: 'https://gitee.com/PandaAdmin/PandaX',
+					isLink: 'https://www.gdjtypt.com/a/b.htm?n=121.47851524333117&t=31.23930212345954',
 					isHide: false,
 					isKeepAlive: false,
 					isAffix: false,

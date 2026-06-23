@@ -226,7 +226,7 @@
                         <el-form-item label="链接地址">
                             <el-input
                                     v-model="ruleForm.isLink"
-                                    placeholder="外链/内嵌时链接地址（http:xxx.com）"
+                                    placeholder="外链/内嵌时链接地址（http:www.baidu.com）"
                                     clearable
                             >
                             </el-input>

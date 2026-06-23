@@ -262,8 +262,8 @@ export default {
 							},
 						},
 						data: [
-							{ name: 'PandaUi', value: 520 },
-							{ name: 'PandaX', value: 520 },
+							{ name: 'He1', value: 520 },
+							{ name: 'He2', value: 520 },
 							{ name: 'next-admin', value: 500 },
 							{ name: '更名', value: 420 },
 							{ name: '智慧农业', value: 520 },
